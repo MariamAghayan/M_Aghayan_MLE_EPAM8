@@ -1,5 +1,5 @@
-# ML_basic_example
-Welcome to the `ML_basic_example` project. It is an ideal template for starting a well-structured Machine Learning project. The goal of this project is to make the deployment of ML models straightforward, efficient, and maintainable. The project has been set up to handle each aspect of the ML pipeline from data processing, training models, and inferencing on new data. In order to use this project template, you'll first need to create a GitHub account if you don't have one already. It's a simple process that takes just a few minutes. Go to [GitHub's homepage](https://github.com), click 'Sign up', and follow the prompts to set up your new account. Get ready to step into the world of efficient Machine Learning project structuring!
+# M_Aghayan_MLE_EPAM8
+Welcome to the `M_Aghayan_MLE_EPAM8` project. It was built using `ML_basic_example` template for starting a well-structured Machine Learning project. The goal of this project is to make the deployment of ML models straightforward, efficient, and maintainable. The project has been set up to handle each aspect of the ML pipeline from data processing, training models, and inferencing on new data. 
 
 ## Prerequisites
 
@@ -68,7 +68,7 @@ Keep in mind that you may need to pass the path to your config to the scripts. F
 Please note, some IDEs, including VSCode, may have problems detecting environment variables defined in the .env file. This is usually due to the extension handling the .env file. If you're having problems, try to run your scripts in a debug mode, or, as a workaround, you can hardcode necessary parameters directly into your scripts. Make sure not to expose sensitive data if your code is going to be shared or public. In such cases, consider using secret management tools provided by your environment.
 
 ## Data:
-Data is the cornerstone of any Machine Learning project. For generating the data, use the script located at `data_process/data_generation.py`. The generated data is used to train the model and to test the inference. Following the approach of separating concerns, the responsibility of data generation lies with this script.
+Data is the cornerstone of any Machine Learning project. We generated the data from the Iris dataset. The generated data is used to train the model and to test the inference. Following the approach of separating concerns, the responsibility of data generation lies with this script.
 
 ## Training:
 The training phase of the ML pipeline includes preprocessing of data, the actual training of the model, and the evaluation and validation of the model's performance. All of these steps are performed by the script `training/train.py`.
@@ -77,11 +77,11 @@ The training phase of the ML pipeline includes preprocessing of data, the actual
 
 - Build the training Docker image. If the built is successfully done, it will automatically train the model:
 ```bash
-docker build -f ./training/Dockerfile --build-arg settings_name=settings.json -t training_image .
+docker build -f C:\Users\User\Desktop\M_Aghayan_MLE_EPAM8\training\Dockerfile -t training_image .
 ```
-- You may run the container with the following parameters to ensure that the trained model is here:
+- You may run the container with the following parameters to ensure that the trained model is here and choose the type (natural_network in this example):
 ```bash
-docker run -it training_image /bin/bash
+docker run training_image python training/train.py --model_type neural_network
 ```
 Then, move the trained model from the directory inside the Docker container `/app/models` to the local machine using:
 ```bash
@@ -97,6 +97,7 @@ python3 training/train.py
 
 ## Inference:
 Once a model has been trained, it can be used to make predictions on new data in the inference stage. The inference stage is implemented in `inference/run.py`.
+There is also a check to see if the model file exists before attempting to load it. If the file doesn't exist, it logs an error message and exits the script, indicating that the model needs to be trained first.
 
 1. To run the inference using Docker, use the following commands:
 
@@ -123,4 +124,4 @@ python inference/run.py
 Replace `/path_to_your_local_model_directory`, `/path_to_your_input_folder`, and `/path_to_your_output_folder` with actual paths on your local machine or network where your models, input, and output are stored.
 
 ## Wrap Up
-This project illustrates a simple, yet effective template to organize an ML project. Following good practices and principles, it ensures a smooth transition from model development to deployment.
+This project used a simple template to organize an ML project. 
